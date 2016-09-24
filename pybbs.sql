@@ -10,6 +10,9 @@
 # Generation Time: 2016-05-30 07:38:43 +0000
 # ************************************************************
 
+create database pybbs;
+
+use pybbs;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

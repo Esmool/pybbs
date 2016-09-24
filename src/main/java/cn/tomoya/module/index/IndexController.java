@@ -44,7 +44,7 @@ public class IndexController extends BaseController {
         } else {
             setAttr("sectionName", "版块");
         }
-        Page page = Topic.me.page(getParaToInt("p", 1), PropKit.getInt("pageSize", 20), tab);
+        Page<Topic> page = Topic.me.page(getParaToInt("p", 1), PropKit.getInt("pageSize", 20), tab);
         setAttr("tab", tab);
         setAttr("sections", Section.me.findByShowStatus(true));
         setAttr("page", page);
@@ -93,7 +93,7 @@ public class IndexController extends BaseController {
                 } else if (PropKit.get("upload.type").equals("qiniu")) {
                     // 将本地文件上传到七牛,并删除本地文件
                     String filePath = uf.getUploadPath() + uf.getFileName();
-                    Map map = new QiniuUpload().upload(filePath);
+                    Map<?, ?> map = new QiniuUpload().upload(filePath);
                     new File(filePath).delete();
                     url = PropKit.get("qiniu.url") + "/" + map.get("key");
                     urls.add(url);
@@ -131,7 +131,7 @@ public class IndexController extends BaseController {
             Integer pageNumber = getParaToInt("p", 1);
             String q = getPara("q");
             SolrUtil solrUtil = new SolrUtil();
-            Page page = solrUtil.indexQuery(pageNumber, q);
+            Page<?> page = solrUtil.indexQuery(pageNumber, q);
             setAttr("q", q);
             setAttr("page", page);
             render("search.ftl");

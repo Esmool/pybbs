@@ -39,7 +39,8 @@ public class SolrUtil {
      *
      * @return
      */
-    public boolean indexAll() {
+    @SuppressWarnings("unchecked")
+	public boolean indexAll() {
         try {
             List<Topic> topics = Topic.me.findAll();
             List<SolrInputDocument> docs = new ArrayList<>();
@@ -105,11 +106,12 @@ public class SolrUtil {
      * @param q
      * @return
      */
-    public Page indexQuery(Integer pageNumber, String q) {
+    public Page<Topic> indexQuery(Integer pageNumber, String q) {
         try {
             String URL = PropKit.get("solr.url");
             Integer pageSize = PropKit.getInt("solr.pageSize");
-            SolrClient solrClient = new HttpSolrClient(URL);
+            @SuppressWarnings("resource")
+			SolrClient solrClient = new HttpSolrClient(URL);
             SolrQuery query = new SolrQuery(q);
             query.setStart((pageNumber - 1) * pageSize);
             query.setRows(pageSize);
@@ -144,7 +146,7 @@ public class SolrUtil {
             int totalCount = (int) docs.getNumFound();
             int totalPage = totalCount / pageSize;
             if (totalCount % pageSize != 0) totalPage++;
-            Page page = new Page(list, pageNumber, pageSize, totalPage, totalCount);
+            Page<Topic> page = new Page<Topic>(list, pageNumber, pageSize, totalPage, totalCount);
             return page;
         } catch (SolrServerException e) {
             e.printStackTrace();

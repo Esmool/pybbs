@@ -70,14 +70,14 @@ public class OauthController extends BaseController {
             Map<String, String> headers = new HashMap<String, String>();
             headers.put("Accept", "application/json");
             String resp1 = HttpKit.post("https://github.com/login/oauth/access_token", map1, "", headers);
-            Map respMap1 = StrUtil.parseToMap(resp1);
+            Map<String, Object> respMap1 = StrUtil.parseToMap(resp1);
             //access_token, scope, token_type
             String github_access_token = (String) respMap1.get("access_token");
             //获取用户信息
             Map<String, String> map2 = new HashMap<String, String>();
             map2.put("access_token", github_access_token);
             String resp2 = HttpKit.get("https://api.github.com/user", map2);
-            Map respMap2 = StrUtil.parseToMap(resp2);
+            Map<String, Object> respMap2 = StrUtil.parseToMap(resp2);
             Double githubId = (Double) respMap2.get("id");
             String login = (String) respMap2.get("login");
             String avatar_url = (String) respMap2.get("avatar_url");
@@ -177,7 +177,7 @@ public class OauthController extends BaseController {
             map1.put("code", code);
             map1.put("redirect_uri", PropKit.get("weibo.redirecturi"));
             String resp1 = HttpKit.post("https://api.weibo.com/oauth2/access_token", map1, "");
-            Map respMap1 = StrUtil.parseToMap(resp1);
+            Map<String, Object> respMap1 = StrUtil.parseToMap(resp1);
             //access_token, expires_in, remind_in, uid
             String weibo_access_token = (String) respMap1.get("access_token");
 //            Double expires_in = (Double) respMap1.get("expires_in");
@@ -187,7 +187,7 @@ public class OauthController extends BaseController {
             map2.put("access_token", weibo_access_token);
             map2.put("uid", (String) respMap1.get("uid"));
             String resp2 = HttpKit.get("https://api.weibo.com/2/users/show.json", map2);
-            Map respMap2 = StrUtil.parseToMap(resp2);
+            Map<String, Object> respMap2 = StrUtil.parseToMap(resp2);
             System.out.println(respMap2);
             Double weiboId = (Double) respMap2.get("id");
             String name = (String) respMap2.get("name");

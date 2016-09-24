@@ -16,7 +16,11 @@ import java.util.List;
  */
 public class Topic extends BaseModel<Topic> {
 
-    public static final Topic me = new Topic();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -12888138943367313L;
+	public static final Topic me = new Topic();
 
     /**
      * 根据tab分页查询话题列表

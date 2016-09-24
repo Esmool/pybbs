@@ -15,7 +15,11 @@ import java.util.List;
  */
 public class TopicAppend extends BaseModel<TopicAppend> {
 
-    public static final TopicAppend me = new TopicAppend();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5470673394383608801L;
+	public static final TopicAppend me = new TopicAppend();
 
     /**
      * 查询话题追加内容
@@ -24,7 +28,7 @@ public class TopicAppend extends BaseModel<TopicAppend> {
      */
     public List<TopicAppend> findByTid(Integer tid) {
         Cache cache = Redis.use();
-        List list = cache.get(CacheEnum.topicappends.name() + tid);
+        List<TopicAppend> list = cache.get(CacheEnum.topicappends.name() + tid);
         if(list == null) {
             list = find(
                     "select * from pybbs_topic_append where isdelete = ? and tid = ? order by in_time",

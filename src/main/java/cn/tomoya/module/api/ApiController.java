@@ -71,7 +71,8 @@ public class ApiController extends BaseController {
      */
     public void topic() throws UnsupportedEncodingException {
         Integer tid = getParaToInt(0);
-        String token = getPara("token");
+        @SuppressWarnings("unused")
+		String token = getPara("token");
         Boolean mdrender = getParaToBoolean("mdrender", true);
         Topic topic = Topic.me.findById(tid);
         if (topic == null) {

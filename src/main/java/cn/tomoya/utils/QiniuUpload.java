@@ -38,14 +38,14 @@ public class QiniuUpload {
         return auth.uploadToken(bucketname);
     }
 
-    public Map upload(String filePath) throws IOException {
+    public Map<?, ?> upload(String filePath) throws IOException {
         try {
             //创建上传对象
             UploadManager uploadManager = new UploadManager();
             //调用put方法上传
             Response res = uploadManager.put(filePath, key, getUpToken());
             //打印返回的信息
-            Map map = StrUtil.parseToMap(res.bodyString());
+            Map<?, ?> map = StrUtil.parseToMap(res.bodyString());
             return map;
         } catch (QiniuException e) {
             Response r = e.response;

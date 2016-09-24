@@ -17,7 +17,11 @@ import java.util.Map;
  */
 public class Permission extends BaseModel<Permission> {
 
-    public static final Permission me = new Permission();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2071557501662843758L;
+	public static final Permission me = new Permission();
 
     /**
      * 根据父节点查询权限列表

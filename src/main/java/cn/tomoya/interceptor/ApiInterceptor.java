@@ -1,18 +1,12 @@
 package cn.tomoya.interceptor;
 
-import cn.tomoya.common.Constants;
-import cn.tomoya.module.notification.Notification;
+import com.jfinal.aop.Interceptor;
+import com.jfinal.aop.Invocation;
+import com.jfinal.core.Controller;
+
 import cn.tomoya.module.user.User;
 import cn.tomoya.utils.Result;
 import cn.tomoya.utils.StrUtil;
-import com.jfinal.aop.Interceptor;
-import com.jfinal.aop.Invocation;
-import com.jfinal.core.ActionKey;
-import com.jfinal.core.Controller;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 /**
  * Created by tomoya.

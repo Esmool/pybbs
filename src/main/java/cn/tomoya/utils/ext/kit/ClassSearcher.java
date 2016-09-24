@@ -30,7 +30,8 @@ public class ClassSearcher {
 
     private String classpath = PathKit.getRootClassPath();
 
-    private String libDir = PathKit.getWebRootPath() + File.separator + "WEB-INF" + File.separator + "lib";
+    @SuppressWarnings("unused")
+	private String libDir = PathKit.getWebRootPath() + File.separator + "WEB-INF" + File.separator + "lib";
 
     private List<String> scanPackages = Lists.newArrayList();
 
@@ -38,7 +39,8 @@ public class ClassSearcher {
 
     private List<String> includeJars = Lists.newArrayList();
 
-    private Class target;
+    @SuppressWarnings("rawtypes")
+	private Class target;
 
     @SuppressWarnings("unchecked")
     private static <T> List<Class<? extends T>> extraction(Class<T> clazz, List<String> classFileList) {
@@ -53,7 +55,8 @@ public class ClassSearcher {
         return classList;
     }
 
-    public static ClassSearcher of(Class target) {
+    @SuppressWarnings("rawtypes")
+	public static ClassSearcher of(Class target) {
         return new ClassSearcher(target);
     }
 
@@ -129,7 +132,8 @@ public class ClassSearcher {
         return strIndex == strLength;
     }
 
-    public <T> List<Class<? extends T>> search() {
+    @SuppressWarnings("unchecked")
+	public <T> List<Class<? extends T>> search() {
         List<String> classFileList = Lists.newArrayList();
         if (scanPackages.isEmpty()) {
             classFileList = findFiles(classpath, "*.class");
@@ -145,7 +149,8 @@ public class ClassSearcher {
     /**
      * 查找jar包中的class
      */
-    private List<String> findjarFiles(String baseDirName) {
+    @SuppressWarnings("unused")
+	private List<String> findjarFiles(String baseDirName) {
         List<String> classFiles = Lists.newArrayList();
         File baseDir = new File(baseDirName);
         if (!baseDir.exists() || !baseDir.isDirectory()) {
@@ -198,7 +203,8 @@ public class ClassSearcher {
         return classFiles;
     }
 
-    public ClassSearcher(Class target) {
+    @SuppressWarnings("rawtypes")
+	public ClassSearcher(Class target) {
         this.target = target;
     }
 

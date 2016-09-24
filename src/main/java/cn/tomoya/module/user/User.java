@@ -21,7 +21,11 @@ import java.util.List;
  * http://tomoya.cn
  */
 public class User extends BaseModel<User> {
-    public static final User me = new User();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -773209170998740642L;
+	public static final User me = new User();
 
     /**
      * 根据Github_access_token查询用户信息

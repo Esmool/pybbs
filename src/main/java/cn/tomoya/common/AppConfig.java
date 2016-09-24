@@ -21,7 +21,8 @@ import com.jfinal.render.FreeMarkerRender;
  */
 public class AppConfig extends JFinalConfig {
 
-    private Routes routes;
+    @SuppressWarnings("unused")
+	private Routes routes;
 
     /**
      * 配置常量
@@ -44,7 +45,6 @@ public class AppConfig extends JFinalConfig {
     /**
      * 配置路由
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
     public void configRoute(Routes me) {
         this.routes = me;
         me.add(new AutoBindRoutes());
@@ -53,8 +53,8 @@ public class AppConfig extends JFinalConfig {
     /**
      * 配置插件
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    public void configPlugin(Plugins me) {
+    @SuppressWarnings("unchecked")
+	public void configPlugin(Plugins me) {
         // 配置C3p0数据库连接池插件
         DruidPlugin druidPlugin = new DruidPlugin(
                 getProperty("jdbcUrl"),

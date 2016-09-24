@@ -1,7 +1,10 @@
 package cn.tomoya.module.collect;
 
+import java.util.Date;
+
+import com.jfinal.aop.Before;
+
 import cn.tomoya.common.BaseController;
-import cn.tomoya.common.Constants;
 import cn.tomoya.common.Constants.CacheEnum;
 import cn.tomoya.interceptor.UserInterceptor;
 import cn.tomoya.module.notification.Notification;
@@ -9,9 +12,6 @@ import cn.tomoya.module.notification.NotificationEnum;
 import cn.tomoya.module.topic.Topic;
 import cn.tomoya.module.user.User;
 import cn.tomoya.utils.ext.route.ControllerBind;
-import com.jfinal.aop.Before;
-
-import java.util.Date;
 
 /**
  * Created by tomoya.

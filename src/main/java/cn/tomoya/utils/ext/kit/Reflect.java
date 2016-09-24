@@ -225,7 +225,7 @@ public class Reflect {
 
     /**
      *
-     * TODO:(简单描述方法作用). <br/>
+     * 获取声明的字段
      *
      * @author kid create 2013-8-29
      * @param clazz
@@ -514,7 +514,6 @@ public class Reflect {
     public <P> P as(Class<P> proxyType) {
         final boolean isMap = (object instanceof Map);
         final InvocationHandler handler = new InvocationHandler() {
-            @SuppressWarnings("null")
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 String name = method.getName();

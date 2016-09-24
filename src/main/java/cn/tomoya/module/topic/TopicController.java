@@ -260,7 +260,8 @@ public class TopicController extends BaseController {
         } else {
             TopicAppend.me.deleteByTid(id);
             Reply.me.deleteByTid(id);
-            Topic topic = Topic.me.findById(id);
+            @SuppressWarnings("unused")
+			Topic topic = Topic.me.findById(id);
             //删除用户积分
 //            User user = User.me.findByNickname(topic.getStr("author"));
 //            Integer score = user.getInt("score");

@@ -14,7 +14,11 @@ import java.util.List;
  */
 public class Section extends BaseModel<Section> {
 
-    public static final Section me = new Section();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7843955124210521914L;
+	public static final Section me = new Section();
 
     public List<Section> findAll() {
         return super.find("select * from pybbs_section");
@@ -22,7 +26,7 @@ public class Section extends BaseModel<Section> {
 
     public List<Section> findByShowStatus(boolean isshow) {
         Cache cache = Redis.use();
-        List list = cache.get(CacheEnum.sections.name() + isshow);
+        List<Section> list = cache.get(CacheEnum.sections.name() + isshow);
         if(list == null) {
             list = super.find("select * from pybbs_section where show_status = ? order by display_index", isshow);
             cache.set(CacheEnum.sections.name() + isshow, list);

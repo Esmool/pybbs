@@ -14,7 +14,11 @@ import java.util.List;
  */
 public class Reply extends BaseModel<Reply> {
 
-    public static final Reply me = new Reply();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7545540858608754869L;
+	public static final Reply me = new Reply();
 
     /**
      * 根据话题id查询回复数量

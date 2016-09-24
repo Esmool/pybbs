@@ -13,7 +13,11 @@ import java.util.Date;
  */
 public class Notification extends BaseModel<Notification> {
 
-    public static final Notification me = new Notification();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -227451953046331244L;
+	public static final Notification me = new Notification();
 
     /**
      * 查询未读通知数量

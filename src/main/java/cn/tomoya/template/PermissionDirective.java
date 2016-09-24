@@ -17,7 +17,8 @@ import java.util.Map;
  */
 public class PermissionDirective implements TemplateDirectiveModel {
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public void execute(Environment environment, Map map, TemplateModel[] templateModels,
                         TemplateDirectiveBody templateDirectiveBody)
             throws TemplateException, IOException {

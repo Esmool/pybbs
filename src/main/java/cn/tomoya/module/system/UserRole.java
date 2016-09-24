@@ -12,7 +12,11 @@ import java.util.List;
  */
 public class UserRole extends BaseModel<UserRole> {
 
-    public static final UserRole me = new UserRole();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1205595543041160140L;
+	public static final UserRole me = new UserRole();
 
     public List<UserRole> findByUserId(Integer userId) {
         return super.find("select * from pybbs_user_role where uid = ?", userId);

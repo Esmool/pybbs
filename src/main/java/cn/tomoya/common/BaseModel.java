@@ -20,9 +20,14 @@ import java.util.Locale;
  * Copyright (c) 2016, All Rights Reserved.
  * http://tomoya.cn
  */
-public class BaseModel<T extends Model> extends Model<T> {
+public class BaseModel<T extends Model<T>> extends Model<T> {
 
-    static {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1049885545813520304L;
+
+	static {
         PropKit.use("config.properties");
     }
 

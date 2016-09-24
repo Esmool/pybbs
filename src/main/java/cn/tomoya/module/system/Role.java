@@ -13,7 +13,11 @@ import java.util.List;
  */
 public class Role extends BaseModel<Role> {
 
-    public static final Role me = new Role();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6668161818527258680L;
+	public static final Role me = new Role();
 
     public Page<Role> page(Integer pageNumber, Integer pageSize) {
         return super.paginate(pageNumber, pageSize, "select * ", "from pybbs_role");

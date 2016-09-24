@@ -12,7 +12,11 @@ import java.util.List;
  */
 public class RolePermission extends BaseModel<RolePermission> {
 
-    public static final RolePermission me = new RolePermission();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2372443146243225098L;
+	public static final RolePermission me = new RolePermission();
 
     public List<RolePermission> findByRoleId(Integer roleId) {
         return super.find("select * from pybbs_role_permission where rid = ?", roleId);
