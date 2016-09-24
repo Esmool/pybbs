@@ -16,3 +16,5 @@ pybbs.log
 target/
 out/
 dev.config.properties
+/pybbs.mwb.bak
+/.settings
