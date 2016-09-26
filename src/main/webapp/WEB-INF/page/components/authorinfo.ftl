@@ -7,12 +7,12 @@
         <div class="media">
             <div class="media-left">
                 <a href="/user/${authorinfo.nickname!}">
-                    <img src="${authorinfo.avatar!}" title="${authorinfo.nickname!}" class="avatar"/>
+                    <img src="${authorinfo.avatar!}" title="${authorinfo.realname!}" class="avatar"/>
                 </a>
             </div>
             <div class="media-body">
                 <div class="media-heading">
-                    <a href="/user/${authorinfo.nickname!}">${authorinfo.nickname!}</a>
+                    <a href="/user/${authorinfo.nickname!}">${authorinfo.realname!}</a>
                 </div>
                 <p>积分: ${authorinfo.score!}</p>
             </div>

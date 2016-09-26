@@ -1,5 +1,18 @@
 package cn.tomoya.module.topic;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Date;
+import java.util.List;
+
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
+import com.jfinal.aop.Before;
+import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
+
 import cn.tomoya.common.BaseController;
 import cn.tomoya.common.Constants;
 import cn.tomoya.common.Constants.CacheEnum;
@@ -13,19 +26,6 @@ import cn.tomoya.module.user.User;
 import cn.tomoya.utils.SolrUtil;
 import cn.tomoya.utils.StrUtil;
 import cn.tomoya.utils.ext.route.ControllerBind;
-import com.jfinal.aop.Before;
-import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.activerecord.tx.Tx;
-import com.jfinal.plugin.redis.Cache;
-import com.jfinal.plugin.redis.Redis;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by tomoya.
@@ -51,13 +51,6 @@ public class TopicController extends BaseController {
             List<TopicAppend> topicAppends = TopicAppend.me.findByTid(tid);
             //话题浏览次数+1
             topic.set("view", topic.getInt("view") + 1).update();
-            //更新redis里的topic数据
-            Cache cache = Redis.use();
-            Topic _topic = cache.get(CacheEnum.topic.name() + tid);
-            if (_topic != null) {
-                _topic.set("view", _topic.getInt("view") + 1);
-                cache.set(CacheEnum.topic.name() + tid, _topic);
-            }
             //查询版块名称
             Section section = Section.me.findByTab(topic.getStr("tab"));
             //查询话题作者信息

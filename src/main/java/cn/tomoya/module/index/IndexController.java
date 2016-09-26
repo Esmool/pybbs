@@ -1,5 +1,15 @@
 package cn.tomoya.module.index;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import com.jfinal.aop.Before;
+import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.upload.UploadFile;
+
 import cn.tomoya.common.BaseController;
 import cn.tomoya.common.Constants;
 import cn.tomoya.interceptor.PermissionInterceptor;
@@ -10,17 +20,6 @@ import cn.tomoya.utils.QiniuUpload;
 import cn.tomoya.utils.SolrUtil;
 import cn.tomoya.utils.StrUtil;
 import cn.tomoya.utils.ext.route.ControllerBind;
-import com.jfinal.aop.Before;
-import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.redis.Cache;
-import com.jfinal.plugin.redis.Redis;
-import com.jfinal.upload.UploadFile;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by tomoya.
@@ -84,7 +83,7 @@ public class IndexController extends BaseController {
     public void upload() {
         try {
             List<UploadFile> uploadFiles = getFiles(PropKit.get("static.path"));
-            List<String> urls = new ArrayList<>();
+            List<String> urls = new ArrayList<String>();
             for (UploadFile uf : uploadFiles) {
                 String url = "";
                 if (PropKit.get("upload.type").equals("local")) {
@@ -183,8 +182,6 @@ public class IndexController extends BaseController {
             PermissionInterceptor.class
     })
     public void clear() {
-        Cache cache = Redis.use();
-        cache.getJedis().flushDB();
         redirect("/");
     }
 

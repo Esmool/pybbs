@@ -1,10 +1,10 @@
 <#include "../common/layout.ftl"/>
-<@html page_title="${currentUser.nickname!}回复的话题" page_tab="user">
+<@html page_title="${currentUser.realname!}回复的话题" page_tab="user">
     <div class="row">
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    ${currentUser.nickname!}回复的话题
+                    ${currentUser.realname!}回复的话题
                 </div>
                 <#include "../components/userreplies.ftl"/>
                 <@userreplies replies=page.getList()/>

@@ -13,7 +13,7 @@
                     <#list page.getList() as user>
                         <tr>
                             <td>${user.id!}</td>
-                            <td><a href="/user/${user.nickname!}" target="_blank">${user.nickname!}</a></td>
+                            <td>${user.realname!}(<a href="/user/${user.nickname!}" target="_blank">${user.nickname!}</a>)</td>
                             <td><a href="mailto:${user.email!}" target="_blank">${user.email!}</a></td>
                             <td><a href="${user.url!}" target="_blank">${user.url!}</a></td>
                             <td>

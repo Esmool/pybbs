@@ -1,10 +1,11 @@
 package cn.tomoya.module.notification;
 
-import cn.tomoya.common.BaseModel;
+import java.util.Date;
+
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 
-import java.util.Date;
+import cn.tomoya.common.BaseModel;
 
 /**
  * Created by tomoya.
@@ -25,11 +26,7 @@ public class Notification extends BaseModel<Notification> {
      * @return
      */
     public int findNotReadCount(String author) {
-        return super.find(
-                "select id from pybbs_notification where `read` = ? and target_author = ?",
-                false,
-                author
-            ).size();
+    	return this.find("select id from pybbs_notification where `read` = ? and target_author = ?", false, author).size();
     }
 
     /**
@@ -79,17 +76,21 @@ public class Notification extends BaseModel<Notification> {
      * @param tid
      * @param content
      */
-    public void sendNotification(String author, String targetAuthor, String action, Integer tid, String content) {
-        new Thread(() -> {
-            Notification notification = new Notification();
-            notification.set("read", false)
-                    .set("author", author)
-                    .set("target_author", targetAuthor)
-                    .set("in_time", new Date())
-                    .set("action", action)
-                    .set("tid", tid)
-                    .set("content", content)
-                    .save();
+    public void sendNotification(final String author, final String targetAuthor, final String action, final Integer tid, final String content) {
+        new Thread(new Runnable() {
+			@Override
+			public void run() {
+	        	Notification notification = new Notification();
+	            notification.set("read", false)
+                .set("author", author)
+                .set("target_author", targetAuthor)
+                .set("in_time", new Date())
+                .set("action", action)
+                .set("tid", tid)
+                .set("content", content)
+                .save();
+
+			}
         }).start();
     }
 }

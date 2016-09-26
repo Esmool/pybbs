@@ -10,7 +10,7 @@
                                 <img src="${currentUser.avatar}" class="avatar-lg" alt=""/>
                             </div>
                             <div class="media-body">
-                                <h3 style="margin-top: 0">${currentUser.nickname!}</h3>
+                                <h3 style="margin-top: 0">${currentUser.realname!}(${currentUser.nickname!})</h3>
                                 <#if currentUser.signature??>
                                     <p><i class="gray">${currentUser.signature!}</i></p>
                                 </#if>
@@ -29,7 +29,7 @@
                         <@usertopics topics=topicPage.getList()/>
                     </div>
                     <div class="panel-footer">
-                        <a href="/user/topics/${currentUser.nickname!}">${currentUser.nickname!}更多话题&gt;&gt;</a>
+                        <a href="/user/topics/${currentUser.nickname!}">${currentUser.realname!}(${currentUser.nickname!})更多话题&gt;&gt;</a>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -37,7 +37,7 @@
                     <#include "../components/userreplies.ftl"/>
                     <@userreplies replies=replyPage.getList()/>
                     <div class="panel-footer">
-                        <a href="/user/replies/${currentUser.nickname!}">${currentUser.nickname!}更多回复&gt;&gt;</a>
+                        <a href="/user/replies/${currentUser.nickname!}">${currentUser.realname!}(${currentUser.nickname!})更多回复&gt;&gt;</a>
                     </div>
                 </div>
             <#else>

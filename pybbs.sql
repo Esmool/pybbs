@@ -297,7 +297,8 @@ DROP TABLE IF EXISTS `pybbs_user`;
 
 CREATE TABLE `pybbs_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '昵称',
+  `nickname` varchar(50) UNIQUE NOT NULL DEFAULT '' COMMENT '昵称',
+  `realname` varchar(50) NOT NULL default '' COMMENT '真实姓名',
   `score` int(11) NOT NULL COMMENT '积分',
   `avatar` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
   `email` varchar(255) DEFAULT NULL COMMENT '邮箱',

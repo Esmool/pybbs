@@ -1,10 +1,7 @@
 package cn.tomoya.module.system;
 
 import cn.tomoya.common.BaseModel;
-import cn.tomoya.common.Constants.CacheEnum;
 import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.redis.Cache;
-import com.jfinal.plugin.redis.Redis;
 
 import java.util.HashMap;
 import java.util.List;
@@ -68,21 +65,23 @@ public class Permission extends BaseModel<Permission> {
     public Map<String, String> findPermissions(Integer userId) {
         Map<String, String> map = new HashMap<String, String>();
         if(userId == null) return map;
-        Cache cache = Redis.use();
-        List<Permission> permissions = cache.get(CacheEnum.userpermissions.name() + userId);
-        if(permissions == null) {
-            permissions = super.find(
-                    "select p.* from pybbs_user u, pybbs_role r, pybbs_permission p, " +
-                            "pybbs_user_role ur, pybbs_role_permission rp where u.id = ur.uid " +
-                            "and r.id = ur.rid and r.id = rp.rid and p.id = rp.pid " +
-                            "and u.id = ?",
-                    userId
-            );
-            cache.set(CacheEnum.userpermissions.name() + userId, permissions);
-        }
+        List<Permission> permissions = super.find(
+        		"select p.* " +
+				"from " +
+				"	pybbs_user_role ur " +
+				"	inner join pybbs_role r on " +
+				"		ur.rid = r.id " +
+				"	inner join pybbs_role_permission rp on " +
+				"		r.id = rp.rid " +
+				"	inner join pybbs_permission p on " +
+				"		rp.pid = p.id " +
+				"where " +
+				"	ur.uid = ? ", userId);
+        
         for (Permission p : permissions) {
             map.put(p.getStr("name"), p.getStr("url"));
         }
+        
         return map;
     }
 

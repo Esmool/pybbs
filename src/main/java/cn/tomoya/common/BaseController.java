@@ -1,12 +1,11 @@
 package cn.tomoya.common;
 
+import com.jfinal.core.Controller;
+import com.jfinal.kit.PropKit;
+
 import cn.tomoya.module.user.User;
 import cn.tomoya.utils.Result;
 import cn.tomoya.utils.StrUtil;
-import com.jfinal.core.Controller;
-import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.redis.Cache;
-import com.jfinal.plugin.redis.Redis;
 
 /**
  * Created by tomoya.
@@ -41,8 +40,6 @@ public class BaseController extends Controller {
      * @param key
      */
     protected void clearCache(String key) {
-        Cache cache = Redis.use();
-        cache.del(key);
     }
 
     public User getUser() {

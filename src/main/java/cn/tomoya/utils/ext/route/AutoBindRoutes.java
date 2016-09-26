@@ -1,6 +1,7 @@
 package cn.tomoya.utils.ext.route;
 
-import cn.tomoya.utils.ext.kit.ClassSearcher;
+import java.util.List;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.jfinal.config.Routes;
@@ -8,7 +9,7 @@ import com.jfinal.core.Controller;
 import com.jfinal.kit.LogKit;
 import com.jfinal.kit.StrKit;
 
-import java.util.List;
+import cn.tomoya.utils.ext.kit.ClassSearcher;
 
 public class AutoBindRoutes extends Routes {
 
@@ -27,7 +28,7 @@ public class AutoBindRoutes extends Routes {
         return this;
     }
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public AutoBindRoutes addExcludeClasses(Class<? extends Controller>... clazzes) {
         if (clazzes != null) {
             for (Class<? extends Controller> clazz : clazzes) {
@@ -61,6 +62,7 @@ public class AutoBindRoutes extends Routes {
             if (excludeClasses.contains(controller)) {
                 continue;
             }
+            System.out.println(controller.getName());
             controllerBind = (ControllerBind) controller.getAnnotation(ControllerBind.class);
             if (controllerBind == null) {
                 if (!autoScan) {

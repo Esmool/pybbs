@@ -11,7 +11,7 @@
             <@py.scores limit=limit>
                 <#list list as u>
                     <tr>
-                        <td><a href="/user/${u.nickname!}">${u.nickname!}</a></td>
+                        <td><a href="/user/${u.nickname!}">${u.realname!}</a></td>
                         <td <#if hidden == "true">class="hidden"</#if>><a href="${u.url!}">${u.url!}</a></td>
                         <td <#if hidden == "true">class="hidden"</#if>>${u.description!}</td>
                         <td>${u.score!}</td>

@@ -1,5 +1,15 @@
 package cn.tomoya.common;
 
+import com.jfinal.config.Constants;
+import com.jfinal.config.Handlers;
+import com.jfinal.config.Interceptors;
+import com.jfinal.config.JFinalConfig;
+import com.jfinal.config.Plugins;
+import com.jfinal.config.Routes;
+import com.jfinal.core.JFinal;
+import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.render.FreeMarkerRender;
+
 import cn.tomoya.interceptor.CommonInterceptor;
 import cn.tomoya.template.PyTag;
 import cn.tomoya.utils.StrUtil;
@@ -7,12 +17,6 @@ import cn.tomoya.utils.ext.plugin.cron.Cron4jPlugin;
 import cn.tomoya.utils.ext.plugin.tablebind.AutoTableBindPlugin;
 import cn.tomoya.utils.ext.plugin.tablebind.ParamNameStyles;
 import cn.tomoya.utils.ext.route.AutoBindRoutes;
-import com.jfinal.config.Constants;
-import com.jfinal.config.*;
-import com.jfinal.core.JFinal;
-import com.jfinal.plugin.druid.DruidPlugin;
-import com.jfinal.plugin.redis.RedisPlugin;
-import com.jfinal.render.FreeMarkerRender;
 
 /**
  * Created by tomoya.
@@ -63,15 +67,6 @@ public class AppConfig extends JFinalConfig {
         );
         druidPlugin.setFilters("stat,wall");
         me.add(druidPlugin);
-        //增加redis插件
-        me.add(new RedisPlugin(
-                getProperty("redis.cachename"),
-                getProperty("redis.host"),
-                getPropertyToInt("redis.port"),
-                getPropertyToInt("redis.timeout")
-//                getProperty("redis.password"),
-//                getPropertyToInt("redis.database")
-        ));
 
         me.add(new Cron4jPlugin().config("cronjob.properties"));
 

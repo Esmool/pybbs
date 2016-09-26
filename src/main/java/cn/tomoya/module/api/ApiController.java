@@ -1,5 +1,20 @@
 package cn.tomoya.module.api;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
+import com.jfinal.aop.Before;
+import com.jfinal.core.ActionKey;
+import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.Page;
+
 import cn.tomoya.common.BaseController;
 import cn.tomoya.common.Constants;
 import cn.tomoya.common.Constants.CacheEnum;
@@ -15,21 +30,6 @@ import cn.tomoya.module.user.User;
 import cn.tomoya.utils.SolrUtil;
 import cn.tomoya.utils.StrUtil;
 import cn.tomoya.utils.ext.route.ControllerBind;
-import com.jfinal.aop.Before;
-import com.jfinal.core.ActionKey;
-import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.redis.Cache;
-import com.jfinal.plugin.redis.Redis;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by tomoya.
@@ -82,13 +82,6 @@ public class ApiController extends BaseController {
             List<TopicAppend> topicAppends = TopicAppend.me.findByTid(tid);
             //话题浏览次数+1
             topic.set("view", topic.getInt("view") + 1).update();
-            //更新redis里的topic数据
-            Cache cache = Redis.use();
-            Topic _topic = cache.get(CacheEnum.topic.name() + tid);
-            if (_topic != null) {
-                _topic.set("view", _topic.getInt("view") + 1);
-                cache.set(CacheEnum.topic.name() + tid, _topic);
-            }
             //查询话题作者信息
             User authorinfo = User.me.findByNickname(topic.getStr("author"));
             authorinfo.remove("receive_msg", "isblock", "third_access_token", "third_id", "channel", "expire_time",
@@ -113,7 +106,7 @@ public class ApiController extends BaseController {
                     ta.set("content", ta.marked(ta.getStr("content")));
                 }
                 for (Reply reply : replies) {
-                    reply.put("avatar", User.me.findByNickname(reply.get("author")).get("avatar"));
+                    reply.put("avatar", User.me.findByNickname((String)reply.get("author")).get("avatar"));
                     reply.set("content", reply.marked(reply.getStr("content")));
                 }
             }
@@ -154,7 +147,7 @@ public class ApiController extends BaseController {
             }
             //渲染markdown
             for (Reply reply : replies) {
-                reply.put("avatar", User.me.findByNickname(reply.get("author")).get("avatar"));
+                reply.put("avatar", User.me.findByNickname((String)reply.get("author")).get("avatar"));
                 if (mdrender) {
                     reply.put("replyContent", reply.marked(reply.getStr("replyContent")));
                 }
@@ -298,9 +291,9 @@ public class ApiController extends BaseController {
             } else {
                 List<Collect> collects = Collect.me.findByUid(user.getInt("id"));
                 for (Collect collect : collects) {
-                    collect.put("avatar", User.me.findByNickname(collect.get("author")).get("avatar"));
+                    collect.put("avatar", User.me.findByNickname((String)collect.get("author")).get("avatar"));
                     if (mdrender) {
-                        collect.put("content", collect.marked(collect.get("content")));
+                        collect.put("content", collect.marked((String)collect.get("content")));
                     }
                 }
                 success(collects);
@@ -395,9 +388,9 @@ public class ApiController extends BaseController {
         User user = getUserByToken();
         Page<Notification> page = Notification.me.pageByAuthor(getParaToInt("p", 1), PropKit.getInt("pageSize"), user.getStr("nickname"));
         for (Notification notification : page.getList()) {
-            notification.put("avatar", User.me.findByNickname(notification.get("author")).get("avatar"));
+            notification.put("avatar", User.me.findByNickname((String)notification.get("author")).get("avatar"));
             if (mdrender) {
-                notification.set("content", notification.marked(notification.get("content")));
+                notification.set("content", notification.marked((String)notification.get("content")));
             }
         }
         //将通知都设置成已读的

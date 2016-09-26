@@ -43,7 +43,7 @@ public class SolrUtil {
 	public boolean indexAll() {
         try {
             List<Topic> topics = Topic.me.findAll();
-            List<SolrInputDocument> docs = new ArrayList<>();
+            List<SolrInputDocument> docs = new ArrayList<SolrInputDocument>();
             for (Topic topic : topics) {
                 SolrInputDocument doc = new SolrInputDocument();
                 doc.addField("id", topic.getInt("id"));
@@ -126,7 +126,7 @@ public class SolrUtil {
             QueryResponse res = solrClient.query(query);
             Map<String, Map<String, List<String>>> highlightMap = res.getHighlighting();
             SolrDocumentList docs = res.getResults();
-            List<Topic> list = new ArrayList<>();
+            List<Topic> list = new ArrayList<Topic>();
             for (SolrDocument doc : docs) {
                 Topic topic = new Topic();
                 String id = doc.getFieldValue("id").toString();

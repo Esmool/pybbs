@@ -21,7 +21,7 @@
                         <label for="email">邮箱</label>
                         <input type="text" disabled class="form-control" id="email" value="${userinfo.email!}"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="url">Github主页</label>
                         <input type="text" class="form-control" id="url" name="url" value="${userinfo.url!}"/>
                     </div>
@@ -29,7 +29,7 @@
                         <label for="signature">个性签名</label>
                         <textarea class="form-control" name="signature" id="signature">${userinfo.signature!}</textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <input type="checkbox" id="receive_msg" name="receive_msg" value="1"
                                <#if userinfo.receive_msg>checked</#if>/>
                         <label for="receive_msg">是否接收系统邮件</label>
@@ -41,7 +41,7 @@
                 </form>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="display: none;">
             <div class="panel-heading">Access Token</div>
             <div class="panel-body">
                 <p>AccessToken: ${userinfo.access_token!}</p>
