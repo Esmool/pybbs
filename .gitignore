@@ -18,3 +18,4 @@ out/
 dev.config.properties
 /pybbs.mwb.bak
 /.settings
+/.externalToolBuilders/org.eclipse.wst.jsdt.core.javascriptValidator.launch
