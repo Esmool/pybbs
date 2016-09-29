@@ -9,6 +9,7 @@ import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.PropKit;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,12 @@ public class CommonInterceptor implements Interceptor {
     public void intercept(Invocation inv) {
         Controller controller = inv.getController();
         PropKit.use("config.properties");
+        
+        try {
+			controller.getRequest().setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 
         String user_cookie = controller.getCookie(Constants.USER_ACCESS_TOKEN);
 

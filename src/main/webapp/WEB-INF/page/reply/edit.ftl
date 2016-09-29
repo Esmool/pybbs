@@ -7,7 +7,7 @@
                 <a href="/">主页</a> / <a href="/t/${topic.id!}">${topic.title!}</a> / 编辑回复
             </div>
             <div class="panel-body">
-                <form action="/r/edit" method="post" id="replyForm">
+                <form action="/r/edit" method="post" id="replyForm" accept-charset="UTF-8">
                     <input type="hidden" name="id" value="${reply.id!}"/>
 
                     <div class="form-group">

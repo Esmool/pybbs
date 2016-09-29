@@ -7,7 +7,7 @@
                 <a href="/">主页</a> / <a href="/t/${topic.id}">${topic.title}</a> / 追加内容编辑
             </div>
             <div class="panel-body">
-                <form action="/t/appendedit" method="post" id="replyForm">
+                <form action="/t/appendedit" method="post" id="replyForm" accept-charset="UTF-8">
                     <input type="hidden" name="id" value="${topicAppend.id!}"/>
 
                     <div class="form-group">

@@ -38,6 +38,7 @@ public class AppConfig extends JFinalConfig {
         me.setFreeMarkerViewExtension("ftl");
         String staticPath = getProperty("static.path");
         me.setBaseUploadPath(StrUtil.isBlank(staticPath) ? "static/upload" : staticPath);
+        me.setEncoding("UTF-8");
 //        me.setMaxPostSize(1024 * 1024 * 2);
         me.setFreeMarkerTemplateUpdateDelay(300);
         me.setError401View("/WEB-INF/page/401.html");

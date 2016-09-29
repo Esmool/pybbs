@@ -5,6 +5,11 @@ import cn.tomoya.common.Constants;
 import cn.tomoya.interceptor.PermissionInterceptor;
 import cn.tomoya.interceptor.UserInterceptor;
 import cn.tomoya.utils.ext.route.ControllerBind;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.jfinal.aop.Before;
 
 /**
@@ -57,6 +62,16 @@ public class SectionController extends BaseController {
      * 添加板块
      */
     public void add() {
+    	HttpServletRequest request = this.getRequest();
+    	Map<String, String[]> map = request.getParameterMap();
+    	for (String k : map.keySet()) {
+    		String[] vs = map.get(k);
+    		System.out.println(k);
+    		for (int i=0; vs != null && i<vs.length; i++) {
+    			System.out.print(vs[i] + ", ");
+    		}
+    		System.out.println();
+    	}
         String method = getRequest().getMethod();
         if(method.equals("GET")) {
             render("section/add.ftl");

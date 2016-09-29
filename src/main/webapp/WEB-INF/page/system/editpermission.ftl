@@ -8,7 +8,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="panel-body">
-                        <form action="/manage/editpermission" method="post" id="permissionForm">
+                        <form action="/manage/editpermission" method="post" id="permissionForm" accept-charset="UTF-8">
                             <input type="hidden" name="id" value="${_permission.id!}"/>
                             <div class="form-group">
                                 <label for="pid">父节点</label>

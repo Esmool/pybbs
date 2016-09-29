@@ -7,7 +7,7 @@
                 <a href="/">主页</a> / <a href="/t/${topic.id}">${topic.title}</a> / 内容追加
             </div>
             <div class="panel-body">
-                <form action="/t/append/${topic.id}" method="post" id="replyForm">
+                <form action="/t/append/${topic.id}" method="post" id="replyForm" accept-charset="UTF-8">
                     <div class="form-group">
                         <textarea name="content" id="content" rows="15"
                                   class="form-control" placeholder="支持Markdown语法哦~"></textarea>

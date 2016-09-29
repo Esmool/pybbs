@@ -3,6 +3,7 @@ package com.zjb.authorize;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiFunction;
 
 import org.jasig.cas.client.authentication.AttributePrincipal;
 
@@ -21,6 +22,9 @@ import cn.tomoya.utils.ext.route.ControllerBind;
 public class AuthController extends Controller {
 
 	public void index() {
+		String path = this.getPara("section", "").trim();
+		path = path.isEmpty() ? "/" : String.format("/?tab=%s", path);
+		
 		AttributePrincipal principal = (AttributePrincipal) this.getRequest().getUserPrincipal();
 
 		if (principal != null) {
@@ -29,7 +33,7 @@ public class AuthController extends Controller {
 			this.transAuthorization(cid, attributes);
 		}
 		
-		this.redirect("/");
+		this.redirect(path);
 	}
 	
 	public void test() {
@@ -49,7 +53,7 @@ public class AuthController extends Controller {
 		if (u == null)
 			u = this.createNewUser(cid);
 
-		this.syncUserInfo(u, attributes);
+		this.syncUserInfo(cid, u, attributes);
 		this.simulateLoginStatus(u);
 	}
 
@@ -59,13 +63,13 @@ public class AuthController extends Controller {
 				"/", PropKit.get("cookie.domain"), true);
 	}
 
-	private void syncUserInfo(User u, Map<String, Object> attributes) {
-		 u
+	private void syncUserInfo(String cid, User u, Map<String, Object> attributes) {
+		BiFunction<String, Object, Object> get = (n, d) -> attributes.get(n) == null ? d : attributes.get(n);
+		u
 			 .set("score", 0)
-			 .set("third_id", attributes.get("username"))
-			 .set("realname", attributes.get("name"))
-			 .set("avatar", attributes.get("avatar"))
-			 .set("signature", attributes.get("username"))
+			 .set("realname", get.apply("name", ""))
+			 .set("avatar", get.apply("avatar", ""))
+			 .set("signature", get.apply("name", ""))
 			 .update();
 	}
 

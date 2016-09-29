@@ -38,7 +38,7 @@
             '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
             '<div id="editorToolImageTitle">添加链接</div></div>' +
             '<div class="modal-body">' +
-            '<form>' +
+            '<form accept-charset="UTF-8">' +
             '<div class="form-group">' +
             '<label>标题</label>' +
             '<input type="text" name="title" placeholder="标题" class="form-control">' +

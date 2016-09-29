@@ -7,7 +7,7 @@
                 <a href="/">主页</a> / 话题编辑
             </div>
             <div class="panel-body">
-                <form method="post" action="/t/edit" id="topicForm">
+                <form method="post" action="/t/edit" id="topicForm" accept-charset="UTF-8">
                     <input type="hidden" name="id" value="${topic.id!}"/>
                     <div class="form-group">
                         <label for="title">标题</label>

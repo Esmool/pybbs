@@ -62,7 +62,6 @@ public class AutoBindRoutes extends Routes {
             if (excludeClasses.contains(controller)) {
                 continue;
             }
-            System.out.println(controller.getName());
             controllerBind = (ControllerBind) controller.getAnnotation(ControllerBind.class);
             if (controllerBind == null) {
                 if (!autoScan) {

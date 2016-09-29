@@ -5,7 +5,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">配置角色</div>
             <div class="panel-body">
-                <form action="/manage/userrole" method="post">
+                <form action="/manage/userrole" method="post" accept-charset="UTF-8">
                     <input type="hidden" name="id" value="${user.id!}"/>
                     <div class="form-group">
                         <label for="nickname">昵称</label>

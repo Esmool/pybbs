@@ -13,7 +13,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse header-navbar">
             <#if solrStatus == "true">
-                <form class="navbar-form navbar-left" role="search" action="/search" method="get">
+                <form class="navbar-form navbar-left" role="search" action="/search" method="get" accept-charset="UTF-8">
                     <div class="form-group">
                         <input type="text" class="form-control" name="q" value="${q!}" placeholder="回车搜索">
                     </div>

@@ -7,7 +7,7 @@
                 <a href="/">主页</a> / 添加板块
             </div>
             <div class="panel-body">
-                <form action="/section/add" method="post" id="sectionForm">
+                <form action="/section/add" method="post" id="sectionForm" accept-charset="UTF-8">
                     <div class="form-group">
                         <label for="name">名称</label>
                         <input type="text" name="name" id="name" placeholder="名称" class="form-control">

@@ -7,7 +7,7 @@
                 <a href="/">主页</a> / 登录
             </div>
             <div class="panel-body text-center">
-                <a href="/oauth/githublogin" class="btn btn-default">Github登录</a>
+				请您首先登录砖家宝统一身份入口
             </div>
         </div>
     </div>

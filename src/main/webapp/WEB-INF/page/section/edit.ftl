@@ -7,7 +7,7 @@
                 <a href="/">主页</a> / 编辑板块
             </div>
             <div class="panel-body">
-                <form action="/section/edit" method="post" id="sectionForm">
+                <form action="/section/edit" method="post" id="sectionForm" accept-charset="UTF-8">
                     <input type="hidden" name="id" value="${section.id!}">
                     <div class="form-group">
                         <label for="name">名称</label>

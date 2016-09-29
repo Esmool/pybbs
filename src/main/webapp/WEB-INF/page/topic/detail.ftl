@@ -108,7 +108,7 @@
                     <a href="javascript:;" id="goTop" class="pull-right">回到顶部</a>
                 </div>
                 <div class="panel-body">
-                    <form action="/r/save" method="post" id="replyForm">
+                    <form action="/r/save" method="post" id="replyForm" accept-charset="UTF-8">
                         <input type="hidden" value="${topic.id}" name="tid"/>
 
                         <div class="form-group">

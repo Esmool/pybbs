@@ -12,7 +12,7 @@
                     ${msg!}
                     </div>
                 </#if>
-                <form action="/user/setting" method="post" id="userProfileForm">
+                <form action="/user/setting" method="post" id="userProfileForm" accept-charset="UTF-8">
                     <div class="form-group">
                         <label for="nickname">昵称</label>
                         <input type="text" disabled class="form-control" id="nickname" value="${userinfo.nickname!}"/>
