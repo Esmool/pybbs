@@ -44,7 +44,7 @@
 		</init-param>
 		<init-param>
 			<param-name>serverName</param-name>
-			<param-value>http://bbs.zhuanjiabao.com/</param-value>
+			<param-value>http://bbs.zhangguoxian.com/</param-value>
 		</init-param>
 		<init-param>
 			<param-name>useSession</param-name>
@@ -74,7 +74,7 @@
 		</init-param>
 		<init-param>
 			<param-name>serverName</param-name>
-			<param-value>http://bbs.zhuanjiabao.com/</param-value>
+			<param-value>http://bbs.zhangguoxian.com/</param-value>
 		</init-param>
 		<init-param>
 			<param-name>encoding</param-name>
