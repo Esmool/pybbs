@@ -43,7 +43,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/user/setting">个人资料</a></li>
                             <!-- <li><a href="/logout">退出</a></li> -->
-                            <li><a href="/goBack">返回</a></li>
+                            <li><a href="/goBack">返回智律大厅</a></li>
                             <@py.hasPermission name="section:list" id="${userinfo.id!}">
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/section/list">板块管理</a></li>
