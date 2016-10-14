@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.jasig.cas.client.authentication.AttributePrincipal;
 
 import com.jfinal.core.Controller;
@@ -23,17 +26,27 @@ public class AuthController extends Controller {
 
 	public void index() {
 		String path = this.getPara("section", "").trim();
-		path = path.isEmpty() ? "/" : String.format("/?tab=%s", path);
-		
-		AttributePrincipal principal = (AttributePrincipal) this.getRequest().getUserPrincipal();
-
-		if (principal != null) {
-			String cid = principal.getName();
-			Map<String, Object> attributes = principal.getAttributes();
-			this.transAuthorization(cid, attributes);
-		}
-		
-		this.redirect(path);
+        path = path.isEmpty() ? "/" : String.format("/?tab=%s", path);
+        
+        HttpServletRequest request = this.getRequest();
+        HttpSession session = this.getSession();
+        Object isOld = session.getAttribute("__isOld");
+        if (isOld != null) {
+            session.invalidate();
+            this.redirect("/jumpIn");
+            return;
+        }
+        
+        session.setAttribute("__isOld", true);
+        AttributePrincipal principal = (AttributePrincipal) request.getUserPrincipal();
+        
+        if (principal != null) {
+            String cid = principal.getName();
+            Map<String, Object> attributes = principal.getAttributes();
+            this.transAuthorization(cid, attributes);
+        }
+        
+        this.redirect(path);
 	}
 	
 	public void test() {
