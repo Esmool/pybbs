@@ -83,7 +83,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>CAS Filter</filter-name>
-		<url-pattern>/jumpIn</url-pattern>
+		<url-pattern>/jumpIn/</url-pattern>
 	</filter-mapping>
 
 	<filter>

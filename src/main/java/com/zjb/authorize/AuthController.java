@@ -33,7 +33,7 @@ public class AuthController extends Controller {
         Object isOld = session.getAttribute("__isOld");
         if (isOld != null) {
             session.invalidate();
-            this.redirect("/jumpIn");
+            this.redirect(path);
             return;
         }
         
