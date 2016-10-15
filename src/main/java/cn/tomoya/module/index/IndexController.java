@@ -68,6 +68,14 @@ public class IndexController extends BaseController {
         removeCookie(Constants.USER_ACCESS_TOKEN, "/", PropKit.get("cookie.domain"));
         redirect("/");
     }
+    
+    /**
+     * 返回
+     */
+    public void goBack() {
+    	this.removeCookie(Constants.USER_ACCESS_TOKEN, "/", PropKit.get("cookie.domain"));
+    	this.redirect("http://www.zhuanjiabao.com/wisdomLaw");
+    }
 
     /**
      * 关于
